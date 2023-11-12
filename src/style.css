@@ -58,9 +58,15 @@ main {
   text-align: center;
 }
 .current-temperature {
+  display: flex;
+  justify-content: center;
   font-size: 25px;
   font-weight: 700;
+  margin-top: 20px;
   text-align: center;
+}
+.unit {
+  margin-top: 20px;
 }
 .current-weather-details {
   font-size: 12px;
