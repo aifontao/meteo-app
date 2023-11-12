@@ -7,12 +7,7 @@ function refreshWeather(response) {
   let windSpeedElement = document.querySelector("#wind-speed");
   let currentDateElement = document.querySelector("#current-date");
   let date = new Date(response.data.time * 1000);
-
   let iconElement = document.querySelector("#icon");
-  iconElement.innerHTML = `<img
-      src="${response.data.condition.icon_url}"
-      class="current-icon"
-    />`;
 
   temperatureElement.innerHTML = `${Math.round(currentTemperature)}°C`;
   cityElement.innerHTML = response.data.city;
@@ -20,9 +15,15 @@ function refreshWeather(response) {
   humidityElement.innerHTML = `${response.data.temperature.humidity} %`;
   windSpeedElement.innerHTML = `${response.data.wind.speed} km/h`;
   currentDateElement.innerHTML = formatDate(date);
+  iconElement.innerHTML = `<img
+      src="${response.data.condition.icon_url}"
+      class="current-icon"
+    />`;
 }
 
 function formatDate(date) {
+  let minutes = date.getMinutes();
+  let hours = date.getHours();
   let weekDays = [
     "Sunday",
     "Monday",
@@ -33,14 +34,14 @@ function formatDate(date) {
     "Saturday",
   ];
   let weekDay = weekDays[date.getDay()];
-  let hours = date.getHours();
-  let minutes = date.getMinutes();
+
   if (minutes < 10) {
     minutes = `0${minutes}`;
   }
   if (hours < 10) {
     hours = `0${hours}`;
   }
+
   return `${weekDay}, ${hours}:${minutes}`;
 }
 
