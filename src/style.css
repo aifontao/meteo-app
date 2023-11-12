@@ -47,7 +47,7 @@ main {
   font-size: 30px;
   font-weight: 800;
 }
-.current-date-time {
+.current-time {
   font-size: 11px;
   line-height: 1.6;
   margin-top: -16px;
@@ -70,6 +70,27 @@ main {
   font-size: 11px;
   line-height: 1.5;
   text-align: right;
+}
+
+.weather-forecast {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 45px;
+}
+.weather-forecast-day {
+  text-align: center;
+}
+.week-day {
+  font-weight: bold;
+}
+img.forecast-icon {
+  width: 55px;
+}
+.weather-forecast-temperature {
+  font-size: 12px;
+}
+.weather-forecast-temperature-min {
+  color: rgba(0, 0, 0, 0.5);
 }
 
 footer {
