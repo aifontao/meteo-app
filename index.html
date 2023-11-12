@@ -32,8 +32,8 @@
           <div>
             <h1 class="current-city" id="current-city"></h1>
             <div class="current-date-time">
-              <div class="current-date">Monday, 11 Nov 2023</div>
-              <div class="current-time">22:12</div>
+              <div class="current-date" id="current-date"></div>
+              <div id="description"></div>
             </div>
           </div>
           <div>
@@ -41,18 +41,14 @@
               <div class="current-emoji">🌞</div>
               <div class="current-temperature">
                 <div class="current-temperature" id="current-temperature"></div>
-                <div class="unit">°C</div>
               </div>
             </div>
           </div>
           <div>
-            <p class="current-weather-details">
-              Rain: 10 %
-              <br />
-              Humidity: 60 %
-              <br />
-              Wind: 3.13 km/h
-            </p>
+            <div class="current-weather-details">
+              <div>Humidity: <span id="humidity"></span></div>
+              <div>Wind: <span id="wind-speed"></span></div>
+            </div>
           </div>
         </div>
       </main>

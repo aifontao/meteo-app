@@ -2,9 +2,40 @@ function refreshWeather(response) {
   let temperatureElement = document.querySelector("#current-temperature");
   let currentTemperature = response.data.temperature.current;
   let cityElement = document.querySelector("#current-city");
-  cityElement.innerHTML = response.data.city;
+  let descriptionElement = document.querySelector("#description");
+  let humidityElement = document.querySelector("#humidity");
+  let windSpeedElement = document.querySelector("#wind-speed");
+  let currentDateElement = document.querySelector("#current-date");
+  let date = new Date(response.data.time * 1000);
 
-  temperatureElement.innerHTML = Math.round(currentTemperature);
+  temperatureElement.innerHTML = `${Math.round(currentTemperature)}°C`;
+  cityElement.innerHTML = response.data.city;
+  descriptionElement.innerHTML = response.data.condition.description;
+  humidityElement.innerHTML = `${response.data.temperature.humidity} %`;
+  windSpeedElement.innerHTML = `${response.data.wind.speed} km/h`;
+  currentDateElement.innerHTML = formatDate(date);
+}
+
+function formatDate(date) {
+  let weekDays = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+  ];
+  let weekDay = weekDays[date.getDay()];
+  let hours = date.getHours();
+  let minutes = date.getMinutes();
+  if (minutes < 10) {
+    minutes = `0${minutes}`;
+  }
+  if (hours < 10) {
+    hours = `0${hours}`;
+  }
+  return `${weekDay}, ${hours}:${minutes}`;
 }
 
 function searchCity(city) {
@@ -22,4 +53,4 @@ function handleSearchInput(event) {
 let searchFormElement = document.querySelector("#search-form");
 searchFormElement.addEventListener("submit", handleSearchInput);
 
-searchCity("Barcelona");
+searchCity("Guimarães");
