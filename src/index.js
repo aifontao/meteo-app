@@ -72,7 +72,35 @@ function handleSearchInput(event) {
   searchCity(searchInput.value);
 }
 
+function displayForecast() {
+  let days = ["Tue", "Wed", "Thu", "Fri", "Sat"];
+  let forecastHtml = "";
+
+  days.forEach(function (day) {
+    forecastHtml =
+      forecastHtml +
+      `
+        <div class="weather-forecast-day">
+              <div class="week-day">${day}</div>
+              <div class="weather-forecast-icon">
+                <img
+                  src="https://shecodes-assets.s3.amazonaws.com/api/weather/icons/rain-night.png"
+                  class="forecast-icon"
+                />
+              </div>
+              <div class="weather-forecast-temperature">
+                <span class="weather-forecast-temperature-max">20°</span>
+                <span class="weather-forecast-temperature-min">10°</span>
+              </div>
+            </div>
+  `;
+  });
+  let forecastElement = document.querySelector("#forecast");
+  forecastElement.innerHTML = forecastHtml;
+}
+
 let searchFormElement = document.querySelector("#search-form");
 searchFormElement.addEventListener("submit", handleSearchInput);
 
 searchCity("Guimarães");
+displayForecast();

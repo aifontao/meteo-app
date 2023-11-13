@@ -41,6 +41,7 @@ main {
   justify-content: space-between;
   line-height: 1.6;
   margin-top: 20px;
+  width: fit-content;
 }
 .current-city {
   font-size: 30px;
