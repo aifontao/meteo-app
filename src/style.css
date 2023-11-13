@@ -35,13 +35,12 @@ main {
   margin: 15px 0 10px 0;
 }
 .weather-current-data {
-  align-items: center;
+  align-items: flex-start;
   display: flex;
   font-size: 11px;
   justify-content: space-between;
   line-height: 1.6;
   margin-top: 20px;
-  width: fit-content;
 }
 .current-city {
   font-size: 30px;
@@ -50,9 +49,9 @@ main {
 }
 
 .current-icon {
-  margin-bottom: 15px;
-  margin-left: 58px;
-  width: 100px;
+  margin-top: -18px;
+  margin-left: 53px;
+  width: 83px;
 }
 .current-temperature {
   font-size: 30px;
