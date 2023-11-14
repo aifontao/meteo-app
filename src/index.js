@@ -9,16 +9,18 @@ function refreshWeather(response) {
   let date = new Date(response.data.time * 1000);
   let iconElement = document.querySelector("#icon");
 
-  temperatureElement.innerHTML = `${Math.round(currentTemperature)}°C`;
+  temperatureElement.innerHTML = `${Math.round(currentTemperature)}`;
   cityElement.innerHTML = response.data.city;
   descriptionElement.innerHTML = response.data.condition.description;
-  humidityElement.innerHTML = `${response.data.temperature.humidity}%`;
-  windSpeedElement.innerHTML = `${response.data.wind.speed}km/h`;
+  humidityElement.innerHTML = `${response.data.temperature.humidity} %`;
+  windSpeedElement.innerHTML = `${response.data.wind.speed} km/h`;
   currentTimeElement.innerHTML = formatDate(date);
   iconElement.innerHTML = `<img
       src="${response.data.condition.icon_url}"
       class="current-icon"
     />`;
+
+  getForecast(response.data.city);
 }
 
 function formatDate(date) {
@@ -72,28 +74,43 @@ function handleSearchInput(event) {
   searchCity(searchInput.value);
 }
 
-function displayForecast() {
-  let days = ["Tue", "Wed", "Thu", "Fri", "Sat"];
+function formatDay(timestamp) {
+  let date = new Date(timestamp * 1000);
+  let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+  return days[date.getDay()];
+}
+
+function getForecast(city) {
+  let apiKey = "aof4801f27bc8e543a47a5fc535tf9b8";
+  let apiURL = `https://api.shecodes.io/weather/v1/forecast?query=${city}&key=${apiKey}&units=metric`;
+  axios(apiURL).then(displayForecast);
+}
+
+function displayForecast(response) {
   let forecastHtml = "";
 
-  days.forEach(function (day) {
-    forecastHtml =
-      forecastHtml +
-      `
+  response.data.daily.forEach(function (day, index) {
+    if (index < 5) {
+      forecastHtml =
+        forecastHtml +
+        `
         <div class="weather-forecast-day">
-              <div class="week-day">${day}</div>
-              <div class="weather-forecast-icon">
-                <img
-                  src="https://shecodes-assets.s3.amazonaws.com/api/weather/icons/rain-night.png"
-                  class="forecast-icon"
-                />
-              </div>
+              <div class="week-day">${formatDay(day.time)}</div>
+               <img
+                src="${day.condition.icon_url}"
+                class="forecast-icon"
+              />
               <div class="weather-forecast-temperature">
-                <span class="weather-forecast-temperature-max">20°</span>
-                <span class="weather-forecast-temperature-min">10°</span>
+              <span class="weather-forecast-temperature-max">${Math.round(
+                day.temperature.maximum
+              )}°</span>
+                <span class="weather-forecast-temperature-min">${Math.round(
+                  day.temperature.minimum
+                )}°</span>
               </div>
-            </div>
-  `;
+              </div>
+              `;
+    }
   });
   let forecastElement = document.querySelector("#forecast");
   forecastElement.innerHTML = forecastHtml;
@@ -102,5 +119,4 @@ function displayForecast() {
 let searchFormElement = document.querySelector("#search-form");
 searchFormElement.addEventListener("submit", handleSearchInput);
 
-searchCity("Guimarães");
-displayForecast();
+searchCity("Lisbon");
