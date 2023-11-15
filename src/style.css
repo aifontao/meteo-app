@@ -1,13 +1,11 @@
 body {
-  background-color: #e3f6f5;
+  background-color: #defcf9;
+  color: #283739;
   font-family: "Chivo Mono", monospace;
 }
 
-.search-form {
-  width: 100%;
-}
 .weather-app {
-  background-color: rgba(255, 255, 255, 0.8);
+  background-color: rgba(255, 255, 255, 0.7);
   border-radius: 16px;
   box-shadow: 0 30px 50px rgba(65, 50, 100, 0.08);
   margin: 50px auto;
@@ -16,7 +14,7 @@ body {
 }
 
 .search-form-input {
-  background-color: #ecececad;
+  background-color: #fbf2d5;
   border: none;
   border-radius: 8px;
   font-family: "Chivo Mono", monospace;
@@ -24,8 +22,9 @@ body {
   padding: 10px;
   width: 80%;
 }
+
 .search-form-button {
-  background-color: #6861a1;
+  background-color: #fdc57b;
   border: none;
   border-radius: 8px;
   color: white;
@@ -52,7 +51,7 @@ main {
   margin: 0;
 }
 .current-time {
-  color: #6c6c6c;
+  color: #2b4353;
 }
 
 .current-icon {
@@ -70,7 +69,7 @@ main {
   margin-top: 7px;
 }
 .current-weather-details {
-  color: #443e74;
+  color: rgba(0, 0, 0, 0.6);
   font-size: 9px;
   line-height: 1.6;
   margin-top: -24px;
@@ -78,6 +77,7 @@ main {
 }
 
 .weather-forecast {
+  color: #394a51;
   display: flex;
   justify-content: space-around;
   margin-top: 30px;
@@ -101,7 +101,7 @@ main {
 }
 
 footer {
-  color: rgba(0, 0, 0, 0.6);
+  color: #394a51;
   font-family: monospace;
   font-size: 12px;
   line-height: 1.5;
@@ -109,6 +109,9 @@ footer {
   text-align: center;
 }
 a {
-  color: #e8ad17;
+  color: #7fa99b;
   text-decoration: none;
+}
+a:hover {
+  font-weight: bold;
 }
